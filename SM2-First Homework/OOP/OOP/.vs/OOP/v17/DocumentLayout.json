@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\hsoom\\Documents\\GitHub\\task1\\C\\SM2-First Homework\\OOP\\OOP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C39D6A23-BFFF-48AE-8CC5-6EA8E0B5E401}|OOP\\OOP.vcxproj|C:\\Users\\hsoom\\Documents\\GitHub\\task1\\C\\SM2-First Homework\\OOP\\OOP\\OOP\\OOP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C39D6A23-BFFF-48AE-8CC5-6EA8E0B5E401}|OOP\\OOP.vcxproj|solutionrelative:OOP\\OOP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OOP.cpp",
+              "DocumentMoniker": "C:\\Users\\hsoom\\Documents\\GitHub\\task1\\C\\SM2-First Homework\\OOP\\OOP\\OOP\\OOP.cpp",
+              "RelativeDocumentMoniker": "OOP\\OOP.cpp",
+              "ToolTip": "C:\\Users\\hsoom\\Documents\\GitHub\\task1\\C\\SM2-First Homework\\OOP\\OOP\\OOP\\OOP.cpp",
+              "RelativeToolTip": "OOP\\OOP.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAOYAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-29T18:44:38.81Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
