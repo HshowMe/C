@@ -76,13 +76,63 @@ void LinkedList::RemoveAt(int index) {
         delete temp;
     }
 }
+Node* LinkedList::ExtractNode(int index) {
+    if (index < 0 || !head) {
+        return nullptr;
+    }
+
+    Node* extracted = nullptr;
+    if (index == 0) {
+        extracted = head;
+        head = head->next;
+        extracted->next = nullptr;
+    } else {
+        Node* prev = GetNodeAt(index - 1);
+        if (prev && prev->next) {
+            extracted = prev->next;
+            prev->next = extracted->next;
+            extracted->next = nullptr;
+        }
+    }
+    return extracted;
+}
+
+void LinkedList::InsertNode(Node* node, int index) {
+    if (!node) {
+        return;
+    }
+
+    if (index == 0) {
+        node->next = head;
+        head = node;
+    } else {
+        Node* prev = GetNodeAt(index - 1);
+        if (prev) {
+            node->next = prev->next;
+            prev->next = node;
+        }
+    }
+}
+
 
 void LinkedList::Swap(int index1, int index2) {
-    if (index1 == index2) return;
-    Node* node1 = GetNodeAt(index1);
-    Node* node2 = GetNodeAt(index2);
-    if (node1 && node2) std::swap(node1->data, node2->data);
+    if (index1 > index2) {
+        return Swap(index2, index1);
+    }
+    if (index1 == index2) {
+        return;
+    }
+
+    Node* node2 = ExtractNode(index2);
+    Node* node1 = ExtractNode(index1);
+    if (node1 && node2) {
+        InsertNode(node2, index1);
+        InsertNode(node1, index2);
+    } else {
+        std::cout << "Invalid indices.\n";
+    }
 }
+
 
 void LinkedList::Print() const {
     Node* current = head;

@@ -24,8 +24,8 @@ List* CreateList(int choice) {
 void HandleListChoice(int choice) {
     List* list = CreateList(choice);
     if (list) {
-        ConsoleInterface::Run(*list);
-        delete list; 
+        ConsoleInterface consoleInterface;
+        consoleInterface.Run(*list);     
     }
 }
 
@@ -38,7 +38,7 @@ void ProcessChoice(int choice) {
 }
 
 void RunProgram() {
-    int choice;
+    int choice = 0;
     do {
         DisplayListTypeMenu();
         std::cin >> choice;

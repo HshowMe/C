@@ -5,7 +5,7 @@
 #include <iostream>
 
 struct Node {
-    int data;
+    int data = 0;
     Node* next;
     Node(int value, Node* next = nullptr) : data(value), next(next) {}
 };
@@ -27,6 +27,9 @@ public:
     void RemoveAt(int index) override;
     void Swap(int index1, int index2) override;
     void Print() const override;
+    Node* ExtractNode(int index);
+    void InsertNode(Node* node, int index);
+
 };
 
 #endif

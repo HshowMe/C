@@ -1,8 +1,21 @@
 #include "consoleinterface.h"
 #include <iostream>
 
+ConsoleInterface::ConsoleInterface() {
+    operationFunctions = {
+        [this](List& list) { addToFront(list); },
+        [this](List& list) { addToBack(list); },
+        [this](List& list) { addAtIndex(list); },
+        [this](List& list) { removeFromFront(list); },
+        [this](List& list) { removeFromBack(list); },
+        [this](List& list) { removeAtIndex(list); },
+        [this](List& list) { swapElements(list); },
+        [this](List& list) { printList(list); }
+    };
+}
+
 void ConsoleInterface::Run(List& list) {
-    int choice;
+    int choice = 0;
     do {
         DisplayMenu();
         std::cin >> choice;
@@ -10,7 +23,7 @@ void ConsoleInterface::Run(List& list) {
     } while (choice != 0);
 }
 
-void ConsoleInterface::DisplayMenu() {  
+void ConsoleInterface::DisplayMenu() {
     std::cout << "Menu:\n"
               << "1. Add to front\n"
               << "2. Add to back\n"
@@ -25,15 +38,54 @@ void ConsoleInterface::DisplayMenu() {
 }
 
 void ConsoleInterface::HandleChoice(int choice, List& list) {
-    int value, index1, index2;
-    switch (choice) {
-        case 1: std::cout << "Enter value: "; std::cin >> value; list.AddFront(value); break;
-        case 2: std::cout << "Enter value: "; std::cin >> value; list.AddBack(value); break;
-        case 3: std::cout << "Enter index and value: "; std::cin >> index1 >> value; list.AddAt(index1, value); break;
-        case 4: list.RemoveFront(); break;
-        case 5: list.RemoveBack(); break;
-        case 6: std::cout << "Enter index: "; std::cin >> index1; list.RemoveAt(index1); break;
-        case 7: std::cout << "Enter two indices: "; std::cin >> index1 >> index2; list.Swap(index1, index2); break;
-        case 8: list.Print(); break;
+    if (choice > 0 && choice <= operationFunctions.size()) {
+        operationFunctions[choice - 1](list);
     }
+}
+
+void ConsoleInterface::addToFront(List& list) {
+    int value = 0;
+    std::cout << "Enter value: ";
+    std::cin >> value;
+    list.AddFront(value);
+}
+
+void ConsoleInterface::addToBack(List& list) {
+    int value = 0;
+    std::cout << "Enter value: ";
+    std::cin >> value;
+    list.AddBack(value);
+}
+
+void ConsoleInterface::addAtIndex(List& list) {
+    int index = 0, value = 0;
+    std::cout << "Enter index and value: ";
+    std::cin >> index >> value;
+    list.AddAt(index, value);
+}
+
+void ConsoleInterface::removeFromFront(List& list) {
+    list.RemoveFront();
+}
+
+void ConsoleInterface::removeFromBack(List& list) {
+    list.RemoveBack();
+}
+
+void ConsoleInterface::removeAtIndex(List& list) {
+    int index = 0;
+    std::cout << "Enter index: ";
+    std::cin >> index;
+    list.RemoveAt(index);
+}
+
+void ConsoleInterface::swapElements(List& list) {
+    int index1 = 0, index2 = 0;
+    std::cout << "Enter two indices: ";
+    std::cin >> index1 >> index2;
+    list.Swap(index1, index2);
+}
+
+void ConsoleInterface::printList(List& list) {
+    list.Print();
 }
