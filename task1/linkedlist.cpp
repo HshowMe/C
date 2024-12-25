@@ -19,7 +19,9 @@ LinkedList::LinkedList(const LinkedList& other) : head(nullptr) {
 
 LinkedList& LinkedList::operator=(const LinkedList& other) {
     if (this != &other) {
-        while (head) RemoveFront();
+        while (head){
+            RemoveFront();
+        }
         Node* current = other.head;
         while (current) {
             AddBack(current->data);
@@ -30,7 +32,9 @@ LinkedList& LinkedList::operator=(const LinkedList& other) {
 }
 Node* LinkedList::GetNodeAt(int index) const {
     Node* current = head;
-    while (current && index--) current = current->next;
+    while (current && index--) {
+        current = current->next;
+    }
     return current;
 }
 
@@ -41,41 +45,60 @@ void LinkedList::AddFront(int value) {
 void LinkedList::AddBack(int value) {
     if (!head) return AddFront(value);
     Node* tail = head;
-    while (tail->next) tail = tail->next;
+    while (tail->next) { 
+        tail = tail->next;
+    }
     tail->next = new Node(value);
 }
 
 void LinkedList::AddAt(int index, int value) {
-    if (index == 0) return AddFront(value);
+    if (index == 0){
+        return AddFront(value);
+    }
     Node* prev = GetNodeAt(index - 1);
-    if (prev) prev->next = new Node(value, prev->next);
+    if (prev) {
+        prev->next = new Node(value, prev->next);
+    }
 }
 
 void LinkedList::RemoveFront() {
-    if (!head) return;
-    Node* temp = head;
-    head = head->next;
-    delete temp;
+    RemoveAt(0);
 }
 
+
 void LinkedList::RemoveBack() {
-    if (!head) return;
-    if (!head->next) return RemoveFront();
+    if (!head) {
+        return;
+    }
+    if (!head->next) { 
+        RemoveFront();
+        return;
+    }
+
     Node* prev = head;
-    while (prev->next->next) prev = prev->next;
+    while (prev->next->next) { 
+        prev = prev->next;
+    }
     delete prev->next;
     prev->next = nullptr;
 }
 
+
 void LinkedList::RemoveAt(int index) {
-    if (index == 0) return RemoveFront();
-    Node* prev = GetNodeAt(index - 1);
-    if (prev && prev->next) {
-        Node* temp = prev->next;
-        prev->next = temp->next;
-        delete temp;
-    }
+    {
+  Node* node = ExtractNode(index);
+  if (node)
+  {
+    delete node;
+  }
+  else
+  {
+    std::cout << "Invalid index.\n";
+  }
 }
+
+}
+
 Node* LinkedList::ExtractNode(int index) {
     if (index < 0 || !head) {
         return nullptr;
